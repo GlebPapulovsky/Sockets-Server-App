@@ -1,13 +1,15 @@
 import java.io.*;
 import java.net.*;
 import java.util.Date;
+import Reader.MyFileReader;
+
 
 public class ChatClient1 {
     private static PrintWriter out;
     private static BufferedReader in;
 
     public static void main(String[] args) {
-        int PORT= ReadSettings.readSettings("settings.txt");
+        int PORT = MyFileReader.readSettings("settings.txt");
         try (Socket socket = new Socket("localhost", PORT)) { // считывай порт из settings.txt
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             out = new PrintWriter(socket.getOutputStream(), true);

@@ -3,13 +3,14 @@ import java.net.*;
 import java.util.*;
 import java.io.BufferedReader;
 import java.io.IOException;
+import Reader.MyFileReader;
 
 public class ChatServer {
 
     private static Set<PrintWriter> clientWriters = new HashSet<>();
 
     public static void main(String[] args) {
-        int PORT= ReadSettings.readSettings("settings.txt");
+        int PORT = MyFileReader.readSettings("settings.txt");
 
         try (ServerSocket serverSocket = new ServerSocket(PORT)) {
             System.out.println("Сервер запущен на порту " + PORT);
@@ -26,7 +27,8 @@ public class ChatServer {
         private PrintWriter output;
         private BufferedReader input;
 
-        public ClientHandler(Socket socket) {            this.socket = socket;
+        public ClientHandler(Socket socket) {
+            this.socket = socket;
         }
 
         public void run() {
